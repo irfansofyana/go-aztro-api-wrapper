@@ -1,9 +1,3 @@
-# Aztro API Wrapper in Go
-
-[Aztro API](https://github.com/sameerkumar18/aztro) is API get daily horoscope. This project is aim to create a simple wrapper for the API using Go.
-
-## Example Usage
-```go
 package main
 
 import (
@@ -36,5 +30,3 @@ func main() {
 	}
 	fmt.Println(tmrrwHoroscope) // Get tomorrow's horoscope
 }
-
-```
