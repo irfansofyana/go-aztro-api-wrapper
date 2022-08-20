@@ -2,6 +2,14 @@
 
 [Aztro API](https://github.com/sameerkumar18/aztro) is API get daily horoscope. This project is aim to create a simple wrapper for the API using Go.
 
+## Installation
+
+Open your terminal and run:
+```go
+go get github.com/irfansofyana/go-aztro-api-wrapper
+```
+
+
 ## Example Usage
 ```go
 package main
