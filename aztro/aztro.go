@@ -26,7 +26,7 @@ const (
 	Pisces
 )
 
-// String for sign is to convert into string
+// String for sign struct is to convert it into string
 func (s Sign) String() string {
 	return [...]string{
 		"aries", "taurus", "gemini", "cancer", "leo",
@@ -43,12 +43,12 @@ const (
 	Tomorrow
 )
 
-// String for Day is to convert into string
+// String for Day struct is to convert it into string
 func (d Day) String() string {
 	return [...]string{"yesterday", "today", "tomorrow"}[d]
 }
 
-// Horoscope struct represent a horoscope
+// Horoscope is struct that represent a horoscope
 type Horoscope struct {
 	DateRange     string `json:"date_range"`
 	CurrentDate   string `json:"current_date"`
@@ -60,7 +60,7 @@ type Horoscope struct {
 	LuckyTime     string `json:"lucky_time"`
 }
 
-// AztroErr struct represent error object from Aztro API
+// AztroErr is struct that represent error object from Aztro API
 type AztroErr struct {
 	Message        string `json:"message"`
 	HTTPStatusCode int    `json:"status_code,omitempty"`
@@ -72,7 +72,7 @@ type AztroRequestParam struct {
 	Day  Day
 }
 
-// NewAztroRequestParam function to create a new AztroRequestParam, Default Day=Today
+// NewAztroRequestParam is function to create a new AztroRequestParam, Default Day=Today
 func NewAztroRequestParam(sign Sign, opts ...func(*AztroRequestParam)) *AztroRequestParam {
 	param := &AztroRequestParam{
 		Sign: sign,
@@ -86,19 +86,19 @@ func NewAztroRequestParam(sign Sign, opts ...func(*AztroRequestParam)) *AztroReq
 	return param
 }
 
-// WithDay function to add Day into AztroRequestParam
+// WithDay is function to add Day into AztroRequestParam
 func WithDay(day Day) func(*AztroRequestParam) {
 	return func(param *AztroRequestParam) {
 		param.Day = day
 	}
 }
 
-// IAztroClient represent an interface to query to Aztro API
+// IAztroClient is interface that represent a query to Aztro API
 type IAztroClient interface {
 	GetHoroscope(param *AztroRequestParam) (Horoscope, *AztroErr)
 }
 
-// AztroClient struct represent a client to query to Aztro API
+// AztroClient is struct represent a client to query to Aztro API
 type AztroClient struct {
 	HTTPReq    *http.Request
 	HTTPClient *http.Client
@@ -115,7 +115,7 @@ func NewAztroClient() (*AztroClient, error) {
 	return &AztroClient{HTTPReq: httpReq, HTTPClient: httpClient}, nil
 }
 
-// GetHoroscope function to get a horoscope based on requested param
+// GetHoroscope is function to get a horoscope based on requested param
 func (ac *AztroClient) GetHoroscope(param *AztroRequestParam) (Horoscope, *AztroErr) {
 	ac.setQueryParameter(param)
 
